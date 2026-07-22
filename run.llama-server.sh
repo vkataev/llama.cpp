@@ -3,6 +3,7 @@
 #model=../models/gemma-3-27b-it-Q4_K_M.gguf
 #model=../models/gemma-3-12b-it-Q4_K_M.gguf
 model=../models/Ministral-3-14B-Instruct-2512-UD-Q4_K_XL.gguf
+mmproj=../models/mmproj-BF16.gguf
 ./build/bin/llama-server \
 	--model $model \
 	--seed 123 \
@@ -14,7 +15,8 @@ model=../models/Ministral-3-14B-Instruct-2512-UD-Q4_K_XL.gguf
 	--top-p 0.95 \
 	--ctx-size 16384 \
 	--threads 16 \
-    --host 127.0.0.1 \
+    --host 0.0.0.0 \
     --port 3088 \
-    --n-gpu-layers 55
+    --mmproj $mmproj \
+    --n-gpu-layers 999
 
